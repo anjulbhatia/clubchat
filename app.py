@@ -4,7 +4,7 @@ from flask import Flask, render_template, redirect, url_for, request
 from flask_socketio import SocketIO
 
 users = [
-    {'name': "Anjul Bhatia", 'username': "anjulbhatia", 'password': "1234"},
+    {'name': "Anjul Boss 👑", 'username': "anjulbhatia", 'password': "1234"},
     {'name': "Siddhi Queen 👑", 'username': "sidx69", 'password': "12345"}
 ]
 
@@ -55,15 +55,10 @@ def loginq():
         phone_email_username = request.form['phone_email_username']
         password = request.form['password']
 
-        # Validate username
-        if not re.match(r'^[a-zA-Z_][a-zA-Z0-9_.@]*$', phone_email_username):
-            return render_template('index.html', users=Current_User, code=500, errmsg="Invalid username. It must start with a letter or an underscore.")
-
 
         # Check if the user exists (you should query your database)
         for user in users:
-            if (user['phone_email'] == phone_email_username or
-                user['username'] == phone_email_username) and user['password'] == password:
+            if (user['username'] == phone_email_username) and user['password'] == password:
                 Current_User = user
                 return render_template('dashboard.html', user=Current_User, code=400)
 
@@ -81,12 +76,6 @@ def handle_message(data):
 def admin_dashboard():
     return render_template("admin.html", users=users)
 
-
-
-
-@app.route('/calculator')
-def calculator(): 
-    return render_template('calculator.html')
 
 if __name__ == "__main__":
     #app.run(host="192.168.29.59", port="5000",debug=True)
