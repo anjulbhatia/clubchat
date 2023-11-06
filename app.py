@@ -79,4 +79,4 @@ def admin_dashboard():
 
 if __name__ == "__main__":
     #app.run(host="192.168.29.59", port="5000",debug=True)
-    socketio.run(app, host="192.168.29.59", port="5000", debug=True)
+    socketio.run(app, host="192.168.29.59", port="5000", debug=True, allow_unsafe_werkzeug=True)
